@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@tailwind utilities;
+@import '@fontsource-variable/yanone-kaffeesatz/wght.css';
+
+:root {
+  /* --color-primary: #ff6b6b; */
+  --color-primary: #5f5f5f;
+  --color-secondary: #4ecdc4;
+}
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+}
+
+body {
+  font-family: 'Yanone Kaffeesatz Variable', sans-serif;
+}

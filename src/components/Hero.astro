@@ -1,0 +1,29 @@
+---
+import Countdown from './Countdown.astro';
+---
+
+<div class="min-h-dvh relative bg-blue-400 w-full grid place-items-center bg-cover bg-no-repeat bg-center" style=`background-image: url("/hero.png")`>
+    <Countdown />
+    <img src="/emi1.png" alt="" class="w-[250px] md:w-[600px] absolute top-58 md:top-0"/>
+    <img src="/emi3.png" alt="" class="w-[150px] md:w-50 absolute bottom-2 right-2"/>
+    <img src="/emi3.png" alt="" class="w-[140px] md:w-50 absolute scale-x-[-1] bottom-2 left-2"/>
+    <h1 class="text-3xl md:text-6xl -mt-10 md:mt-96 font-medium uppercase text-center text-white bg-primary/70 rounded-2xl px-6 py-3 backdrop-blur-sm absolute top-[500px] md:top-[220px]">
+        ¡Celebremos juntos mi <br> primer añito!
+    </h1>
+
+    <nav class="absolute top-[570px] md:top-[770px] flex gap-3 px-4">
+        <!-- Confirmar asistencia -->
+        <a href="https://wa.me/5213322331626?text=Hola!%20Confirmo%20mi%20asistencia%20al%20primer%20anito%20de%20Emiliano.%20Ahi%20estare!"
+            target="_blank"
+            class="flex items-center hover:bg-pink-500 gap-2 bg-pink-400 text-white font-extrabold text-xl rounded-2xl px-10 py-4 border-b-[5px] border-pink-600 active:border-b-0 active:translate-y-1 transition-all uppercase tracking-wide">
+            ¡Confirmar!
+        </a>
+
+        <!-- Recuérdame -->
+        <a href="https://calendar.app.google/vD1dW3ebxsUHCoQg6"
+            target="_blank"
+            class="flex items-center gap-2 hover:bg-sky-500 bg-sky-400 text-white font-extrabold text-xl rounded-2xl px-10 py-4 border-b-[5px] border-sky-600 active:border-b-0 active:translate-y-1 transition-all uppercase tracking-wide">
+            Ver evento
+        </a>
+    </nav>
+</div>
