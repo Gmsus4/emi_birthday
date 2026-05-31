@@ -47,11 +47,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <meta name="twitter:image" content={image} />
 
         <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-          <style is:inline>
-            html { overflow: hidden; }
+        <style is:inline>
+            *, *::before, *::after { box-sizing: border-box; }
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
         </style>
     </head>
-    <body>
+    <body style="width:100%;max-width:100%;overflow-x:hidden;">
         <slot />
     </body>
 </html>
