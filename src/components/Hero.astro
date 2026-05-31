@@ -6,12 +6,23 @@ import Countdown from './Countdown.astro';
     <div id="confetti-dots" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;"></div>
     <div class="grid place-items-center contenedor-principal z-10">
         <div class="contenedor-bloque-foto-titulo-botones grid place-items-center">
-            <img src="/emi1.webp" alt="" class="w-[250px] md:w-[300px]"/>
+            <img src="/emi1.webp" alt="" class="w-[250px] md:w-[300px]"
+                data-aos="zoom-in"
+                data-aos-duration="700"
+                data-aos-offset="0"/>
             <div class="-mt-10 grid place-items-center gap-2 px-4 w-full">
-                <h1 class="text-3xl md:text-6xl font-medium uppercase text-center text-white bg-primary/70 rounded-2xl px-6 py-3 backdrop-blur-sm">
+                <h1 class="text-3xl md:text-6xl font-medium uppercase text-center text-white bg-primary/70 rounded-2xl px-6 py-3 backdrop-blur-sm"
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                    data-aos-duration="600"
+                    data-aos-offset="0">
                     ¡Celebremos juntos mi <br> primer añito y bautizo!
                 </h1>
-                <div class="flex gap-3 px-4 w-full justify-center">
+                <div class="flex gap-3 px-4 w-full justify-center"
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                    data-aos-duration="600"
+                    data-aos-offset="0">
                     <a id="btn-confirmar"
                         href="https://wa.me/5213322331626?text=Hola!%20Confirmo%20mi%20asistencia%20al%20primer%20añito%20de%20Emiliano.%20Ahi%20estare!"
                         target="_blank"
@@ -28,27 +39,39 @@ import Countdown from './Countdown.astro';
         </div>
         <Countdown />
     </div>
-    <img src="/emi3.webp" alt="" class="w-[150px] md:w-50 absolute bottom-2 right-2"/>
-    <img src="/emi3.webp" alt="" class="w-[140px] md:w-50 absolute scale-x-[-1] bottom-2 left-2"/>
+    <img src="/emi3.webp" alt="" class="w-[150px] md:w-50 absolute bottom-2 right-2"
+        data-aos="fade-left"
+        data-aos-delay="700"
+        data-aos-duration="600"
+        data-aos-offset="0"/>
+    <img src="/emi3.webp" alt="" class="w-[140px] md:w-50 absolute scale-x-[-1] bottom-2 left-2"
+        data-aos="fade-right"
+        data-aos-delay="700"
+        data-aos-duration="600"
+        data-aos-offset="0"/>
 </div>
 
 <style>
   .hero-bg {
     background-image: url("/hero-mobile.webp");
-    background-size: cover;          /* cover en mobile: llena sin franjas */
-    background-position: center top; /* ancla arriba para no cortar los adornos */
+    background-size: cover;
+    background-position: center top;
   }
   @media (min-width: 1024px) {
     .hero-bg {
       background-image: url("/hero-desktop.webp");
-      background-size: contain;      /* contain en desktop: igual que antes */
+      background-size: contain;
       background-position: center;
     }
   }
 </style>
 
 <script>
+  import AOS from 'aos';
+  import 'aos/dist/aos.css';
   import confetti from 'canvas-confetti';
+
+  AOS.init({ once: true });
 
   const colors = ['#f472b6','#facc15','#60a5fa','#34d399','#f87171','#a78bfa','#fb923c','#4ade80'];
   const container = document.getElementById('confetti-dots');
@@ -65,9 +88,32 @@ import Countdown from './Countdown.astro';
     container!.appendChild(dot);
   }
 
-  confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 }, colors });
-  setTimeout(() => {
-    confetti({ particleCount: 80, angle: 60,  spread: 55, origin: { x: 0, y: 0.6 }, colors });
-    confetti({ particleCount: 80, angle: 120, spread: 55, origin: { x: 1, y: 0.6 }, colors });
-  }, 300);
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 }, colors });
+      setTimeout(() => {
+        confetti({ particleCount: 80, angle: 60,  spread: 55, origin: { x: 0, y: 0.6 }, colors });
+        confetti({ particleCount: 80, angle: 120, spread: 55, origin: { x: 1, y: 0.6 }, colors });
+      }, 300);
+    }, 500);
+  });
+
+  let scrollCooldown = false;
+  window.addEventListener('wheel', () => {
+    if (scrollCooldown) return;
+    scrollCooldown = true;
+    confetti({ particleCount: 60, spread: 70, origin: { y: 0.8 }, colors });
+    setTimeout(() => { scrollCooldown = false; }, 800);
+  });
+
+  let touchStartY = 0;
+  window.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; });
+  window.addEventListener('touchmove', (e) => {
+    if (scrollCooldown) return;
+    if (e.touches[0].clientY - touchStartY < -20) {
+      scrollCooldown = true;
+      confetti({ particleCount: 60, spread: 70, origin: { y: 0.8 }, colors });
+      setTimeout(() => { scrollCooldown = false; }, 800);
+    }
+  });
 </script>

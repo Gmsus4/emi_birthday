@@ -14,11 +14,13 @@
   "dependencies": {
     "@fontsource-variable/yanone-kaffeesatz": "^5.2.7",
     "@tailwindcss/vite": "^4.3.0",
+    "aos": "^2.3.4",
     "astro": "^6.4.2",
     "canvas-confetti": "^1.9.4",
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.8",
     "@types/canvas-confetti": "^1.9.0"
   }
 }
