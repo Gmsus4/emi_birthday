@@ -10,7 +10,7 @@ interface Props {
 const {
     title = "Primer Añito de Emiliano 🎉",
     description = "¡Celebremos juntos el primer añito de Emiliano! 16 de Julio, 2026 a las 5:00 PM.",
-    image = "/hero.png"
+    image = "/emi.jpg"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -48,7 +48,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
         <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
           <style is:inline>
-            html { overflow-x: hidden; }
+            html { overflow: hidden; }
         </style>
     </head>
     <body>
