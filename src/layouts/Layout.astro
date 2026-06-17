@@ -9,7 +9,7 @@ interface Props {
 
 const {
     title = "Primer Añito de Emiliano 🎉",
-    description = "¡Celebremos juntos el primer añito de Emiliano! 16 de Julio, 2026 a las 5:00 PM.",
+    description = "¡Celebremos juntos el primer añito de Emiliano! 26 de Julio, 2026 a las 2:30 PM.",
     image = "/emi.jpg"
 } = Astro.props;
 
@@ -20,18 +20,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="generator" content={Astro.generator} />
 
-        <!-- Primary Meta -->
         <title>{title}</title>
         <meta name="title" content={title} />
         <meta name="description" content={description} />
         <link rel="canonical" href={canonicalURL} />
 
-        <!-- Open Graph -->
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalURL} />
         <meta property="og:title" content={title} />
@@ -39,35 +37,31 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <meta property="og:image" content={image} />
         <meta property="og:locale" content="es_MX" />
 
-        <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={canonicalURL} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-        <style is:inline>
-            *, *::before, *::after { box-sizing: border-box; }
-            html, body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                max-width: 100%;
-                overflow-x: hidden;
-            }
-        </style>
     </head>
-    <body style="width:100%;max-width:100%;overflow-x:hidden;">
+    <body>
         <slot />
     </body>
 </html>
 
-<style>
-    html,
-    body {
+<style is:global>
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    html, body {
         margin: 0;
+        padding: 0;
         width: 100%;
-        height: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 </style>

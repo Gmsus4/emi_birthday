@@ -1,26 +1,21 @@
 ---
+const units = [
+    { id: 'days', label: 'Días' },
+    { id: 'hours', label: 'Horas' },
+    { id: 'minutes', label: 'Min' },
+    { id: 'seconds', label: 'Seg' },
+];
 ---
 
-<div class="flex gap-3 absolute md:bottom-20 md:top-auto top-10">
-    <div class="flex flex-col items-center bg-white/80 backdrop-blur-sm rounded-2xl px-4 py-2 border-b-[4px] border-gray-300 min-w-[60px]"
-        data-aos="fade-up" data-aos-delay="700" data-aos-offset="0">
-        <span id="days" class="text-3xl md:text-5xl font-extrabold text-primary">00</span>
-        <span class="text-xs font-bold text-gray-500 uppercase">Días</span>
-    </div>
-    <div class="flex flex-col items-center bg-white/80 backdrop-blur-sm rounded-2xl px-4 py-2 border-b-[4px] border-gray-300 min-w-[60px]"
-        data-aos="fade-up" data-aos-delay="800" data-aos-offset="0">
-        <span id="hours" class="text-3xl md:text-5xl font-extrabold text-primary">00</span>
-        <span class="text-xs font-bold text-gray-500 uppercase">Horas</span>
-    </div>
-    <div class="flex flex-col items-center bg-white/80 backdrop-blur-sm rounded-2xl px-4 py-2 border-b-[4px] border-gray-300 min-w-[60px]"
-        data-aos="fade-up" data-aos-delay="900" data-aos-offset="0">
-        <span id="minutes" class="text-3xl md:text-5xl font-extrabold text-primary">00</span>
-        <span class="text-xs font-bold text-gray-500 uppercase">Min</span>
-    </div>
-    <div class="flex flex-col items-center bg-white/80 backdrop-blur-sm rounded-2xl px-4 py-2 border-b-[4px] border-gray-300 min-w-[60px]"
-        data-aos="fade-up" data-aos-delay="1000" data-aos-offset="0">
-        <span id="seconds" class="text-3xl md:text-5xl font-extrabold text-primary">00</span>
-        <span class="text-xs font-bold text-gray-500 uppercase">Seg</span>
+<div class="countdown" data-aos="fade-up" data-aos-delay="900" data-aos-duration="700" data-aos-offset="0">
+    <p class="countdown-title">Faltan...</p>
+    <div class="countdown-grid">
+        {units.map(({ id, label }) => (
+            <div class="countdown-card">
+                <span id={id} class="countdown-value">00</span>
+                <span class="countdown-label">{label}</span>
+            </div>
+        ))}
     </div>
 </div>
 
@@ -32,8 +27,9 @@
         const diff = eventDate.getTime() - now.getTime();
 
         if (diff <= 0) {
-            ['days','hours','minutes','seconds'].forEach(id => {
-                document.getElementById(id)!.textContent = '00';
+            ['days', 'hours', 'minutes', 'seconds'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = '00';
             });
             return;
         }
@@ -43,12 +39,104 @@
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        document.getElementById('days')!.textContent = String(days).padStart(2, '0');
-        document.getElementById('hours')!.textContent = String(hours).padStart(2, '0');
-        document.getElementById('minutes')!.textContent = String(minutes).padStart(2, '0');
-        document.getElementById('seconds')!.textContent = String(seconds).padStart(2, '0');
+        const set = (id: string, val: number) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = String(val).padStart(2, '0');
+        };
+
+        set('days', days);
+        set('hours', hours);
+        set('minutes', minutes);
+        set('seconds', seconds);
     }
 
     updateTimer();
     setInterval(updateTimer, 1000);
 </script>
+
+<style>
+    .countdown {
+        width: 100%;
+        display: grid;
+        gap: 0.75rem;
+        justify-items: center;
+        margin-top: 0.5rem;
+    }
+
+    .countdown-title {
+        margin: 0;
+        font-size: 1.1rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--color-primary-dark);
+        font-weight: 500;
+        opacity: 0.85;
+    }
+
+    .countdown-grid {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .countdown-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.15rem;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 1rem;
+        padding: 0.75rem 0.9rem;
+        min-width: 72px;
+        box-shadow:
+            0 4px 16px rgba(255, 107, 157, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+        transition: transform 0.3s ease;
+    }
+
+    .countdown-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 1rem;
+        padding: 1.5px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-secondary));
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0.4;
+        pointer-events: none;
+    }
+
+    .countdown-value {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1;
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        font-variant-numeric: tabular-nums;
+        min-width: 2ch;
+        text-align: center;
+    }
+
+    @media (min-width: 768px) {
+        .countdown-value { font-size: 2.6rem; }
+        .countdown-card { min-width: 84px; padding: 0.85rem 1.1rem; }
+    }
+
+    .countdown-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--color-text-soft);
+    }
+</style>
