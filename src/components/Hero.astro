@@ -103,6 +103,18 @@ const decor = [
 
         <Countdown />
     </div>
+
+    <audio id="bg-audio" src="/Bartolito.mp3" loop preload="auto"></audio>
+
+    <button id="audio-toggle" class="audio-btn" aria-label="Reproducir o pausar música" type="button">
+        <svg class="audio-icon-play" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg class="audio-icon-pause" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="5" width="4" height="14" rx="1"/>
+            <rect x="14" y="5" width="4" height="14" rx="1"/>
+        </svg>
+    </button>
 </div>
 
 <style>
@@ -145,6 +157,44 @@ const decor = [
         0%, 100% { translate: 0 0; }
         50%      { translate: 0 -18px; }
     }
+
+    .audio-btn {
+        position: fixed;
+        bottom: 1.25rem;
+        right: 1.25rem;
+        z-index: 100;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 16px rgba(255, 107, 157, 0.3);
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        color: var(--color-primary-dark);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .audio-btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+    }
+
+    .audio-btn:active {
+        transform: scale(0.95);
+    }
+
+    .audio-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .audio-icon-pause { display: none; }
+    .audio-btn.is-playing .audio-icon-play { display: none; }
+    .audio-btn.is-playing .audio-icon-pause { display: block; }
 
     .hero-content {
         position: relative;
@@ -360,6 +410,34 @@ const decor = [
     AOS.init({ once: true });
 
     const colors = ['#ff6b9d', '#ffd166', '#4ecdc4', '#a78bfa', '#fb923c'];
+
+    const audio = document.getElementById('bg-audio') as HTMLAudioElement | null;
+    const audioBtn = document.getElementById('audio-toggle');
+
+    if (audio && audioBtn) {
+        audio.volume = 0.5;
+
+        const tryAutoplay = () => {
+            audio!.play().then(() => {
+                audioBtn!.classList.add('is-playing');
+            }).catch(() => {});
+        };
+
+        tryAutoplay();
+        document.addEventListener('click', tryAutoplay, { once: true });
+        document.addEventListener('touchstart', tryAutoplay, { once: true });
+
+        audioBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (audio!.paused) {
+                audio!.play();
+                audioBtn!.classList.add('is-playing');
+            } else {
+                audio!.pause();
+                audioBtn!.classList.remove('is-playing');
+            }
+        });
+    }
 
     window.addEventListener('load', () => {
         setTimeout(() => {
