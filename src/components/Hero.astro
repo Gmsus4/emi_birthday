@@ -1,27 +1,56 @@
 ---
 import Countdown from './Countdown.astro';
 
-const floatItems = [
-    { char: '★', x: '7%',  y: '14%', size: '1.4rem', color: 'var(--color-primary)',   delay: '0s',   duration: '6s'   },
-    { char: '♥', x: '91%', y: '16%', size: '1.1rem', color: 'var(--color-accent)',    delay: '1.2s', duration: '7s'   },
-    { char: '✦', x: '12%', y: '78%', size: '0.9rem', color: 'var(--color-secondary)', delay: '2s',   duration: '5.5s' },
-    { char: '★', x: '87%', y: '74%', size: '1.2rem', color: 'var(--color-primary)',   delay: '0.6s', duration: '6.5s' },
-    { char: '●', x: '20%', y: '38%', size: '0.5rem', color: 'var(--color-accent)',    delay: '1.5s', duration: '5s'   },
-    { char: '♥', x: '80%', y: '42%', size: '0.8rem', color: 'var(--color-secondary)', delay: '2.8s', duration: '6.2s' },
-    { char: '✦', x: '4%',  y: '52%', size: '0.7rem', color: 'var(--color-primary)',   delay: '3.2s', duration: '5.8s' },
-    { char: '●', x: '96%', y: '56%', size: '0.4rem', color: 'var(--color-accent)',    delay: '1.8s', duration: '6.3s' },
+const decor = [
+    { src: '/decorations/Estrella.png',   w: 80, x: '3%',   y: '5%',   rot: -12, delay: '0s',   duration: '6s',   opacity: 0.85 },
+    { src: '/decorations/Estrella2.png',  w: 55, x: '88%',  y: '8%',   rot: 16,  delay: '1.2s', duration: '7s',   opacity: 0.8  },
+    { src: '/decorations/Estrella3.png',  w: 40, x: '15%',  y: '22%',  rot: -22, delay: '2s',   duration: '5.5s', opacity: 0.75 },
+    { src: '/decorations/Estrella5.png',  w: 35, x: '92%',  y: '45%',  rot: -8,  delay: '1.8s', duration: '5.8s', opacity: 0.7  },
+    { src: '/decorations/Estrella6.png',  w: 50, x: '5%',   y: '40%',  rot: 14,  delay: '2.5s', duration: '6.2s', opacity: 0.75 },
+    { src: '/decorations/Estrella7.png',  w: 30, x: '20%',  y: '75%',  rot: -18, delay: '3s',   duration: '5.5s', opacity: 0.7  },
+    { src: '/decorations/Estrella8.png',  w: 45, x: '78%',  y: '78%',  rot: 10,  delay: '1s',   duration: '6.8s', opacity: 0.75 },
+    { src: '/decorations/Estrella9.png',  w: 38, x: '10%',  y: '88%',  rot: -14, delay: '2.2s', duration: '5.2s', opacity: 0.7  },
+    { src: '/decorations/Estrella10.png', w: 60, x: '70%',  y: '92%',  rot: 22,  delay: '0.8s', duration: '7.2s', opacity: 0.75 },
+    { src: '/decorations/Estrella12.png', w: 48, x: '60%',  y: '3%',   rot: -10, delay: '2.8s', duration: '5.7s', opacity: 0.7  },
+
+    { src: '/decorations/Circle1.png',  w: 28, x: '30%', y: '18%', rot: 0, delay: '1.6s', duration: '5.3s', opacity: 0.7  },
+    { src: '/decorations/Circle2.png',  w: 22, x: '72%', y: '30%', rot: 0, delay: '2.7s', duration: '6s',   opacity: 0.65 },
+    { src: '/decorations/Circle3.png',  w: 18, x: '8%',  y: '55%', rot: 0, delay: '3.3s', duration: '5.5s', opacity: 0.6  },
+    { src: '/decorations/Circle4.png',  w: 25, x: '90%', y: '60%', rot: 0, delay: '0.9s', duration: '6.4s', opacity: 0.65 },
+    { src: '/decorations/Circle5.png',  w: 20, x: '35%', y: '50%', rot: 0, delay: '2.1s', duration: '5.7s', opacity: 0.6  },
+    { src: '/decorations/Circle6.png',  w: 32, x: '55%', y: '65%', rot: 0, delay: '1.4s', duration: '6.1s', opacity: 0.7  },
+    { src: '/decorations/Circle7.png',  w: 16, x: '65%', y: '55%', rot: 0, delay: '2.9s', duration: '5.4s', opacity: 0.55 },
+    { src: '/decorations/Circle8.png',  w: 24, x: '15%', y: '65%', rot: 0, delay: '1.7s', duration: '6.3s', opacity: 0.65 },
+    { src: '/decorations/Circle9.png',  w: 20, x: '50%', y: '40%', rot: 0, delay: '3.1s', duration: '5.6s', opacity: 0.6  },
+    { src: '/decorations/Circle10.png', w: 26, x: '85%', y: '35%', rot: 0, delay: '0.7s', duration: '6.5s', opacity: 0.65 },
+
+    { src: '/decorations/Line1.png', w: 130, x: '-8%', y: '48%', rot: -6, delay: '1.1s', duration: '7s',   opacity: 0.55 },
+    { src: '/decorations/Line2.png', w: 110, x: '68%', y: '85%', rot: 8,  delay: '2.3s', duration: '6.5s', opacity: 0.5  },
+    { src: '/decorations/Line3.png', w: 90,  x: '-2%', y: '82%', rot: -10, delay: '1.9s', duration: '6.8s', opacity: 0.5  },
+
+    { src: '/decorations/Oso.png',       w: 95, x: '84%', y: '65%', rot: 5,   delay: '1.5s', duration: '5s',   opacity: 0.9,  animal: true },
+    { src: '/decorations/Elefante.png',  w: 88, x: '0%',  y: '28%', rot: -8,  delay: '2.4s', duration: '5.5s', opacity: 0.9,  animal: true },
+    { src: '/decorations/Jirafa.png',    w: 82, x: '88%', y: '85%', rot: 12,  delay: '0.5s', duration: '6s',   opacity: 0.9,  animal: true },
+    { src: '/decorations/León.png',      w: 78, x: '35%', y: '75%', rot: -10, delay: '1.8s', duration: '5.8s', opacity: 0.9,  animal: true },
+    { src: '/decorations/Tigre.png',     w: 85, x: '0%',  y: '90%', rot: 8,   delay: '2.6s', duration: '5.3s', opacity: 0.9,  animal: true },
+    { src: '/decorations/Cocodrilo.png', w: 90, x: '55%', y: '78%', rot: -6,  delay: '1.2s', duration: '6.2s', opacity: 0.9,  animal: true },
+    { src: '/decorations/zorro.png',     w: 75, x: '28%', y: '93%', rot: 14,  delay: '0.8s', duration: '5.7s', opacity: 0.9,  animal: true },
+    { src: '/decorations/Hipopotamo.png',w: 80, x: '73%', y: '10%', rot: -12, delay: '2s',   duration: '6.1s', opacity: 0.9,  animal: true },
 ];
 ---
 
 <div class="hero">
     <div class="hero-pattern" aria-hidden="true"></div>
 
-    <div class="float-layer" aria-hidden="true">
-        {floatItems.map(item => (
-            <span
-                class="float-item"
-                style={`left:${item.x}; top:${item.y}; font-size:${item.size}; color:${item.color}; animation-delay:${item.delay}; animation-duration:${item.duration};`}
-            >{item.char}</span>
+    <div class="decor-layer" aria-hidden="true">
+        {decor.map(item => (
+            <img
+                class="decor-item"
+                src={item.src}
+                alt=""
+                width={item.w}
+                style={`left:${item.x}; top:${item.y}; width:${item.w}px; transform:rotate(${item.rot}deg); animation-delay:${item.delay}; animation-duration:${item.duration}; opacity:${item.opacity};`}
+            />
         ))}
     </div>
 
@@ -97,24 +126,24 @@ const floatItems = [
         pointer-events: none;
     }
 
-    .float-layer {
+    .decor-layer {
         position: absolute;
         inset: 0;
         z-index: 1;
         pointer-events: none;
     }
 
-    .float-item {
+    .decor-item {
         position: absolute;
-        opacity: 0.3;
         animation-name: float-gentle;
         animation-iteration-count: infinite;
         animation-timing-function: ease-in-out;
+        user-select: none;
     }
 
     @keyframes float-gentle {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50%      { transform: translateY(-18px) rotate(6deg); }
+        0%, 100% { translate: 0 0; }
+        50%      { translate: 0 -18px; }
     }
 
     .hero-content {
