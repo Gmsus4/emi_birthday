@@ -1,16 +1,11 @@
 ---
-const units = [
-    { id: 'days',    label: 'Días' },
-    { id: 'hours',   label: 'Horas' },
-    { id: 'minutes', label: 'Min' },
-    { id: 'seconds', label: 'Seg' },
-];
+import { countdown } from '../data/site.js';
 ---
 
 <div class="countdown" data-aos="fade-up" data-aos-delay="900" data-aos-duration="700" data-aos-offset="0">
-    <p class="countdown-title">Faltan...</p>
+    <p class="countdown-title">{countdown.title}</p>
     <div class="countdown-grid">
-        {units.map(({ id, label }) => (
+        {countdown.units.map(({ id, label }) => (
             <div class="countdown-card">
                 <span id={id} class="countdown-value">00</span>
                 <span class="countdown-label">{label}</span>
@@ -19,12 +14,12 @@ const units = [
     </div>
 </div>
 
-<script>
-    const eventDate = new Date('2026-07-26T14:30:00');
+<script define:vars={{ eventDate: countdown.eventDate }}>
+    const target = new Date(eventDate).getTime();
 
     function updateTimer() {
-        const now = new Date();
-        const diff = eventDate.getTime() - now.getTime();
+        const now = new Date().getTime();
+        const diff = target - now;
 
         if (diff <= 0) {
             ['days', 'hours', 'minutes', 'seconds'].forEach(id => {
@@ -34,12 +29,12 @@ const units = [
             return;
         }
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        const set = (id: string, val: number) => {
+        const set = (id, val) => {
             const el = document.getElementById(id);
             if (el) el.textContent = String(val).padStart(2, '0');
         };
