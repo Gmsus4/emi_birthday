@@ -1,0 +1,34 @@
+---
+import { invitation } from "../data/invitation";
+
+const mapsEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(invitation.location.mapsQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+const mapsLinkUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(invitation.location.mapsQuery)}`;
+---
+
+<section id="ubicacion" class="w-full py-16 px-4 bg-[linear-gradient(135deg,#e8d8b8_0%,#ecdfc4_50%,#f5ead4_100%)]">
+  <div class="max-w-2xl mx-auto flex flex-col items-center">
+    <h2 class="font-script text-pooh-brown-dark text-[clamp(3rem,8vw,5rem)] text-center m-0 leading-none">Ubicación</h2>
+    <img src="friends.png" alt="" aria-hidden="true" class="w-80 md:w-96 my-6 opacity-90 -mb-1" />
+
+    <div class="w-full max-w-xl rounded-2xl overflow-hidden border-2 border-pooh-brown-light shadow-lg">
+      <iframe src={mapsEmbedUrl} width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de ubicación" class="block w-full"></iframe>
+    </div>
+
+    <p class="font-serif text-pooh-brown-dark text-lg md:text-xl italic text-center mt-6 max-w-md m-0 leading-snug">
+      {invitation.location.address}
+    </p>
+
+    <a
+      href={mapsLinkUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 mt-6 px-6 py-3 rounded-full bg-yellow text-pooh-brown font-serif font-semibold text-base tracking-wider no-underline transition-colors"
+    >
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </svg>
+      Cómo llegar
+    </a>
+  </div>
+</section>

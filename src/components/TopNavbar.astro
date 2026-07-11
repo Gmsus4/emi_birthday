@@ -1,0 +1,61 @@
+---
+import { navItems } from "../data/navItems";
+---
+
+<nav
+    id="top-navbar"
+    class="fixed top-0 left-0 right-0 z-50 w-full bg-cream/95 backdrop-blur-sm border-b border-pooh-brown-light/50 shadow-md -translate-y-full transition-transform duration-300 will-change-transform"
+>
+    <ul
+        class="flex justify-around items-stretch max-w-2xl mx-auto px-1 py-1.5 m-0 list-none"
+    >
+        {
+            navItems.map((item) => (
+                <li class="flex-1">
+                    <a
+                        href={`#${item.id}`}
+                        class="flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-lg text-pooh-brown hover:bg-pooh-brown/10 active:bg-pooh-brown/20 transition-colors no-underline"
+                        aria-label={item.label}
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <g set:html={item.icon} />
+                        </svg>
+                        <span class="hidden sm:block font-serif text-[10px] sm:text-[11px] tracking-tight font-semibold leading-tight text-center">
+                            {item.label}
+                        </span>
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>
+
+<script>
+    const navbar = document.getElementById("top-navbar");
+    const hero = document.getElementById("hero");
+
+    function update() {
+        if (!navbar || !hero) return;
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        if (heroBottom <= 80) {
+            navbar.classList.remove("-translate-y-full");
+            navbar.classList.add("translate-y-0");
+        } else {
+            navbar.classList.add("-translate-y-full");
+            navbar.classList.remove("translate-y-0");
+        }
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+</script>

@@ -1,0 +1,24 @@
+---
+import { invitation } from "../data/invitation";
+---
+
+<section id="regalos" class="w-full py-16 px-4 bg-[linear-gradient(135deg,#e8d8b8_0%,#ecdfc4_50%,#f5ead4_100%)]">
+  <div class="max-w-2xl mx-auto flex flex-col items-center text-center">
+    <h2 class="font-script text-pooh-brown-dark text-[clamp(3rem,8vw,5rem)] m-0 leading-none">Regalos</h2>
+    <img src="gifts.png" alt="" aria-hidden="true" class="w-80 md:w-96 my-6 opacity-90" />
+
+    <p class="font-serif text-pooh-brown-dark max-w-lg m-0 leading-relaxed text-[clamp(1.4rem,2.4vw,1.5rem)] italic my-2 font-medium">
+      {invitation.gifts.message}
+    </p>
+    <!-- 
+    <div class="mt-8 px-6 py-5 rounded-2xl bg-cream/60 border-2 border-pooh-brown-light max-w-md w-full">
+      <div class="flex items-center justify-center gap-2 mb-2">
+        <svg class="w-6 h-6 text-pooh-brown" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6m16 0V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4m16 0H4m4-4v4m4-4v4m4-4v4"></path>
+        </svg>
+        <span class="font-serif text-pooh-brown-dark text-lg font-semibold tracking-wider"> Sobre / Transferencia </span>
+      </div>
+      <p class="font-serif text-pooh-brown italic text-sm m-0">El día del evento habrá un sobre disponible. También puedes solicitar los datos de transferencia por WhatsApp.</p>
+    </div> -->
+  </div>
+</section>

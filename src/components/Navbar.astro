@@ -1,0 +1,39 @@
+---
+import { navItems } from "../data/navItems";
+---
+
+<nav
+    class="relative z-20 w-full bg-cream border-t border-pooh-brown-light/50 shadow-[0_-4px_16px_rgba(90,58,32,0.08)]"
+>
+    <ul
+        class="flex justify-around items-stretch max-w-2xl mx-auto px-1 py-1.5 m-0 list-none"
+    >
+        {
+            navItems.map((item) => (
+                <li class="flex-1">
+                    <a
+                        href={`#${item.id}`}
+                        class="flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-lg text-pooh-brown hover:bg-pooh-brown/10 active:bg-pooh-brown/20 transition-colors no-underline"
+                        aria-label={item.label}
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <g set:html={item.icon} />
+                        </svg>
+                        <span class="hidden sm:block font-serif text-[10px] sm:text-[11px] tracking-tight font-semibold leading-tight text-center">
+                            {item.label}
+                        </span>
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>

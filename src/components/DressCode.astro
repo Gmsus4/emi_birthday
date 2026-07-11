@@ -1,0 +1,33 @@
+---
+import { invitation } from "../data/invitation";
+
+const swatches = [
+  { name: "Beige", class: "bg-[#e8d8b8]" },
+  { name: "Rosa", class: "bg-[#f5d5d5]" },
+  { name: "Celeste", class: "bg-[#d5e8f5]" },
+  { name: "Verde", class: "bg-[#d5f0d8]" },
+  { name: "Crema", class: "bg-[#f5ead4]" },
+];
+---
+
+<section id="vestimenta" class="w-full py-16 px-4 bg-[linear-gradient(135deg,#f5ead4_0%,#ecdfc4_50%,#e8d8b8_100%)]">
+  <div class="max-w-2xl mx-auto flex flex-col items-center text-center">
+    <h2 class="font-script text-pooh-brown-dark text-[clamp(3rem,8vw,5rem)] m-0 leading-none">Vestimenta</h2>
+    <img src="dress.png" alt="" aria-hidden="true" class="w-24 md:w-32 my-6 opacity-90" />
+
+    <p class="font-serif text-pooh-brown-dark text-xl md:text-2xl font-semibold m-0">
+      {invitation.dressCode}
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4 mt-6">
+      {
+        swatches.map((s) => (
+          <div class="flex flex-col items-center gap-1">
+            <div class={`w-10 h-10 rounded-full border-2 border-pooh-brown-light shadow-sm ${s.class}`} />
+            <span class="font-serif text-pooh-brown text-xs tracking-wider">{s.name}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

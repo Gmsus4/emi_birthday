@@ -1,117 +1,55 @@
 ---
-import { countdown } from '../data/site.js';
+import { invitation } from "../data/invitation";
 ---
 
-<div class="countdown" data-aos="fade-up" data-aos-delay="900" data-aos-duration="700" data-aos-offset="0">
-    <p class="countdown-title">{countdown.title}</p>
-    <div class="countdown-grid">
-        {countdown.units.map(({ id, label }) => (
-            <div class="countdown-card">
-                <span id={id} class="countdown-value">00</span>
-                <span class="countdown-label">{label}</span>
-            </div>
-        ))}
-    </div>
+<div class="flex justify-center items-baseline gap-2 sm:gap-3 my-2" aria-live="polite" aria-label="Cuenta regresiva para el evento">
+  <div class="flex flex-col items-center">
+    <span id="cd-days" class="font-serif text-pooh-brown-dark text-[clamp(1.5rem,4.2vw,2.1rem)] font-semibold leading-none [font-variant-numeric:tabular-nums]">00</span>
+    <span class="font-serif text-pooh-brown text-[9px] tracking-[0.15em] uppercase mt-1">Días</span>
+  </div>
+  <span class="font-serif text-pooh-brown-light text-[clamp(1.5rem,4.2vw,2.1rem)] leading-none" aria-hidden="true">:</span>
+  <div class="flex flex-col items-center">
+    <span id="cd-hours" class="font-serif text-pooh-brown-dark text-[clamp(1.5rem,4.2vw,2.1rem)] font-semibold leading-none [font-variant-numeric:tabular-nums]">00</span>
+    <span class="font-serif text-pooh-brown text-[9px] tracking-[0.15em] uppercase mt-1">Hrs</span>
+  </div>
+  <span class="font-serif text-pooh-brown-light text-[clamp(1.5rem,4.2vw,2.1rem)] leading-none" aria-hidden="true">:</span>
+  <div class="flex flex-col items-center">
+    <span id="cd-mins" class="font-serif text-pooh-brown-dark text-[clamp(1.5rem,4.2vw,2.1rem)] font-semibold leading-none [font-variant-numeric:tabular-nums]">00</span>
+    <span class="font-serif text-pooh-brown text-[9px] tracking-[0.15em] uppercase mt-1">Min</span>
+  </div>
+  <span class="font-serif text-pooh-brown-light text-[clamp(1.5rem,4.2vw,2.1rem)] leading-none" aria-hidden="true">:</span>
+  <div class="flex flex-col items-center">
+    <span id="cd-secs" class="font-serif text-pooh-brown-dark text-[clamp(1.5rem,4.2vw,2.1rem)] font-semibold leading-none [font-variant-numeric:tabular-nums]">00</span>
+    <span class="font-serif text-pooh-brown text-[9px] tracking-[0.15em] uppercase mt-1">Seg</span>
+  </div>
 </div>
 
-<script define:vars={{ eventDate: countdown.eventDate }}>
-    const target = new Date(eventDate).getTime();
+<script define:vars={{ targetDate: invitation.date.targetDate }}>
+  const target = new Date(targetDate).getTime();
+  const $days = document.getElementById("cd-days");
+  const $hours = document.getElementById("cd-hours");
+  const $mins = document.getElementById("cd-mins");
+  const $secs = document.getElementById("cd-secs");
 
-    function updateTimer() {
-        const now = new Date().getTime();
-        const diff = target - now;
+  function pad(n) {
+    return String(n).padStart(2, "0");
+  }
 
-        if (diff <= 0) {
-            ['days', 'hours', 'minutes', 'seconds'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.textContent = '00';
-            });
-            return;
-        }
-
-        const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        const set = (id, val) => {
-            const el = document.getElementById(id);
-            if (el) el.textContent = String(val).padStart(2, '0');
-        };
-
-        set('days', days);
-        set('hours', hours);
-        set('minutes', minutes);
-        set('seconds', seconds);
+  function update() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      $days.textContent = "00";
+      $hours.textContent = "00";
+      $mins.textContent = "00";
+      $secs.textContent = "00";
+      return;
     }
+    $days.textContent = pad(Math.floor(diff / 86400000));
+    $hours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    $mins.textContent = pad(Math.floor((diff % 3600000) / 60000));
+    $secs.textContent = pad(Math.floor((diff % 60000) / 1000));
+  }
 
-    updateTimer();
-    setInterval(updateTimer, 1000);
+  update();
+  setInterval(update, 1000);
 </script>
-
-<style>
-    .countdown {
-        width: 100%;
-        display: grid;
-        gap: 0.6rem;
-        justify-items: center;
-        margin-top: 0.5rem;
-    }
-
-    .countdown-title {
-        margin: 0;
-        font-size: 0.95rem;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: var(--color-primary-dark);
-        font-weight: 900;
-    }
-
-    .countdown-grid {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .countdown-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.15rem;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-radius: 1rem;
-        padding: 0.7rem 0.85rem;
-        min-width: 64px;
-        box-shadow: 0 4px 16px rgba(255, 107, 157, 0.1);
-    }
-
-    .countdown-value {
-        font-size: 1.8rem;
-        font-weight: 700;
-        line-height: 1;
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-        font-variant-numeric: tabular-nums;
-        min-width: 2ch;
-        text-align: center;
-    }
-
-    @media (min-width: 768px) {
-        .countdown-value { font-size: 2.2rem; }
-        .countdown-card  { min-width: 72px; padding: 0.8rem 1rem; }
-    }
-
-    .countdown-label {
-        font-size: 0.65rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: var(--color-text-soft);
-    }
-</style>

@@ -1,85 +1,39 @@
 @import "tailwindcss";
-@import "@fontsource-variable/yanone-kaffeesatz/wght.css";
-
-:root {
-  --color-primary: #ff6b9d;
-  --color-primary-dark: #e85a8a;
-  --color-secondary: #4ecdc4;
-  --color-accent: #ffd166;
-  --color-background: #fff5ec;
-  --color-background-soft: #ffe8d6;
-  --color-text: #4a3a3a;
-  --color-text-soft: #7a6a6a;
-}
+@import "@fontsource/sniglet";
+@import "@fontsource-variable/nunito/wght.css";
 
 @theme {
-  --color-primary: var(--color-primary);
-  --color-primary-dark: var(--color-primary-dark);
-  --color-secondary: var(--color-secondary);
-  --color-accent: var(--color-accent);
-  --color-background: var(--color-background);
-  --color-background-soft: var(--color-background-soft);
-  --color-text: var(--color-text);
-  --color-text-soft: var(--color-text-soft);
-  --font-display: "Yanone Kaffeesatz Variable", system-ui, sans-serif;
+  --font-script: "Sniglet", cursive;
+  --font-serif: "Nunito Variable", serif;
+
+  --color-cream: #f5ead4;
+  --color-cream-mid: #ecdfc4;
+  --color-cream-dark: #e8d8b8;
+  --color-yellow: #fdd57f;
+  --color-red: #fd552d;
+
+  --color-pooh-brown: #6b4423;
+  --color-pooh-brown-dark: #5a3a20;
+  --color-pooh-brown-light: #8a5a35;
+}
+
+@custom-variant short-screen (max-height: 700px);
+@custom-variant narrow-screen (max-width: 380px);
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: var(--font-serif);
+  color: var(--color-pooh-brown);
+  background-color: var(--color-cream);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: var(--font-display);
-  background:
-    radial-gradient(
-      circle at 20% 0%,
-      var(--color-background-soft) 0%,
-      transparent 45%
-    ),
-    radial-gradient(circle at 80% 100%, #ffd9e8 0%, transparent 45%),
-    var(--color-background);
-  color: var(--color-text);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-12px) rotate(2deg);
-  }
-}
-
-@keyframes float-slower {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(-2deg);
-  }
-}
-
-@keyframes pulse-soft {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-}
-
-.animate-float-slow {
-  animation: float-slow 6s ease-in-out infinite;
-}
-.animate-float-slower {
-  animation: float-slower 7s ease-in-out infinite;
-}
-.animate-pulse-soft {
-  animation: pulse-soft 3s ease-in-out infinite;
+section[id] {
+  scroll-margin-top: 1rem;
 }
