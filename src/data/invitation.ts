@@ -20,6 +20,7 @@ export interface InvitationData {
     mapsQuery: string;
   };
   heroImage: string;
+  openGraph: string;
   itinerary: ItineraryItem[];
   dressCode: string;
   rsvp: {
@@ -48,6 +49,7 @@ export const invitation: InvitationData = {
     mapsQuery: "Juan Ramos Beltrán 41, 46470 Magdalena, Jalisco, México",
   },
   heroImage: "/wp.png",
+  openGraph: "/op.png",
   itinerary: [
     {
       time: "2:30 PM",
