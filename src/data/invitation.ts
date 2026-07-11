@@ -49,7 +49,7 @@ export const invitation: InvitationData = {
     mapsQuery: "Juan Ramos Beltrán 41, 46470 Magdalena, Jalisco, México",
   },
   heroImage: "/wp.png",
-  openGraph: "/op.png",
+  openGraph: "/op.jpg",
   itinerary: [
     {
       time: "2:30 PM",
