@@ -1,0 +1,20 @@
+---
+import { invitation } from "../data/invitation";
+---
+
+<section id="galeria" class="w-full py-16 px-4 bg-[linear-gradient(135deg,#f5ead4_0%,#ecdfc4_50%,#e8d8b8_100%)]">
+  <div class="max-w-3xl mx-auto flex flex-col items-center">
+    <h2 class="font-script text-pooh-brown-dark text-[clamp(3rem,8vw,5rem)] text-center m-0 leading-none">Galería</h2>
+    <img src="photos.png" alt="" aria-hidden="true" class="w-80 md:w-96 mt-6 mb-2 opacity-90" />
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full">
+      {
+        invitation.gallery.map((src) => (
+          <div class="aspect-square overflow-hidden rounded-xl border-2 border-pooh-brown-light shadow-md">
+            <img src={src} alt={`${invitation.name} - foto`} loading="lazy" class="w-full h-full object-cover block" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

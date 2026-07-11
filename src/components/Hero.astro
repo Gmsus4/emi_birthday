@@ -1,62 +1,55 @@
 ---
 import { invitation } from "../data/invitation";
+import Navbar from "./Navbar.astro";
 ---
 
-<main class="relative w-screen h-screen h-svh overflow-hidden flex items-center justify-center bg-[linear-gradient(135deg,#f5ead4_0%,#ecdfc4_50%,#e8d8b8_100%)]">
-  <div class="relative z-10 flex flex-col items-center text-center w-full max-w-[540px] px-4 py-6 gap-1.5 short-screen:gap-1 short-screen:p-2">
-    <h1
-      class="font-script text-pooh-brown-dark text-[clamp(4.5rem,11vw,7.5rem)] leading-none m-0 font-normal [text-shadow:1px_1px_0_rgba(0,0,0,0.05)] short-screen:!text-[clamp(3.5rem,9vw,5.5rem)] narrow-screen:!text-[3.8rem]"
-    >
-      {invitation.name}
-    </h1>
+<main id="hero" class="relative w-screen h-screen h-svh overflow-hidden flex flex-col bg-[linear-gradient(135deg,#f5ead4_0%,#ecdfc4_50%,#e8d8b8_100%)]">
+  <div class="flex-1 min-h-0 flex items-center justify-center overflow-hidden">
+    <div class="relative z-10 flex flex-col items-center text-center w-full max-w-[540px] px-4 py-4 gap-1.5 short-screen:gap-1 short-screen:p-2">
+      <h1
+        class="font-script text-pooh-brown-dark text-[clamp(4.5rem,11vw,7.5rem)] leading-none m-0 font-normal [text-shadow:1px_1px_0_rgba(0,0,0,0.05)] short-screen:text-[clamp(3.5rem,9vw,5.5rem)]! narrow-screen:text-[3.8rem]!"
+      >
+        {invitation.name}
+      </h1>
 
-    <p class="font-serif text-pooh-brown text-[clamp(1.1rem,2.6vw,1.65rem)] tracking-[0.25em] m-0 mb-2 font-medium narrow-screen:!tracking-[0.15em]">
-      {invitation.subtitle.toUpperCase()}
-    </p>
-
-    <div class="w-[clamp(260px,55vw,380px)] my-1.5 short-screen:!w-[clamp(250px,48vw,320px)]">
-      <img src={invitation.heroImage} alt={`${invitation.name} - ilustración`} class="w-full h-auto block" />
-    </div>
-
-    <p class="font-serif text-pooh-brown-dark text-[clamp(1.4rem,2.4vw,1.5rem)] italic my-2 font-medium px-10">
-      {invitation.inviteText}
-    </p>
-
-    <div class="flex items-center justify-center w-full max-w-[460px] my-1.5">
-      <div class="flex flex-col items-center flex-1 gap-1.5">
-        <span class="w-full h-px bg-pooh-brown-light"></span>
-        <span class="font-serif text-pooh-brown text-[clamp(1.2rem,2.8vw,1.55rem)] tracking-[0.1em] font-medium whitespace-nowrap">
-          {invitation.date.month}
-        </span>
-        <span class="w-full h-px bg-pooh-brown-light"></span>
-      </div>
-
-      <div class="w-[clamp(54px,9vw,68px)] h-[clamp(54px,9vw,68px)] rounded-full bg-pooh-brown flex items-center justify-center shrink-0 mx-2 leading-none">
-        <span class="font-mono text-cream text-[clamp(1.6rem,5vw,2.2rem)] font-normal leading-none">
-          {invitation.date.day}
-        </span>
-      </div>
-
-      <div class="flex flex-col items-center flex-1 gap-1.5">
-        <span class="w-full h-px bg-pooh-brown-light"></span>
-        <span class="font-serif text-pooh-brown text-[clamp(1.2rem,2.8vw,1.55rem)] tracking-[0.1em] font-medium whitespace-nowrap">
-          {invitation.date.time}
-        </span>
-        <span class="w-full h-px bg-pooh-brown-light"></span>
-      </div>
-    </div>
-
-    <a href="https://maps.app.goo.gl/hy8exfz9qmdBBUns5" target="_blank" class="mt-2.5 flex flex-col items-center gap-1.5">
-      <div class="flex items-center gap-2 font-serif text-pooh-brown text-[clamp(0.95rem,2.1vw,1.2rem)] tracking-[0.15em] font-semibold">
-        <svg class="w-[clamp(20px,3vw,26px)] h-auto" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2 C7.58 2 4 5.58 4 10 c0 5.25 7 12 8 12 s8-6.75 8-12 c0-4.42-3.58-8-8-8 z" fill="none" stroke="#6b4423" stroke-width="1.4"></path>
-          <circle cx="12" cy="10" r="2.5" fill="none" stroke="#6b4423" stroke-width="1.4"></circle>
-        </svg>
-        <span>{invitation.location.label}</span>
-      </div>
-      <p class="font-serif text-pooh-brown-dark text-[clamp(1.3rem,2vw,1.15rem)] italic font-medium m-0 max-w-[95%] leading-[1.35]">
-        {invitation.location.address}
+      <p class="font-serif text-pooh-brown text-[clamp(1.1rem,2.6vw,1.65rem)] tracking-[0.25em] m-0 mb-2 font-medium narrow-screen:tracking-[0.15em]!">
+        {invitation.subtitle.toUpperCase()}
       </p>
-    </a>
+
+      <div class="w-[clamp(260px,55vw,380px)] my-1.5 short-screen:w-[clamp(250px,48vw,320px)]!">
+        <img src={invitation.heroImage} alt={`${invitation.name} - ilustración`} class="w-full h-auto block" />
+      </div>
+
+      <p class="font-serif text-pooh-brown-dark text-[clamp(1.4rem,2.4vw,1.5rem)] italic my-2 font-medium px-10 mb-10">
+        {invitation.inviteText}
+      </p>
+
+      <div class="flex items-center justify-center w-full max-w-[460px] my-1.5">
+        <div class="flex flex-col items-center flex-1 gap-1.5">
+          <span class="w-full h-px bg-pooh-brown-light"></span>
+          <span class="font-serif text-pooh-brown text-[clamp(1.2rem,2.8vw,1.55rem)] tracking-[0.1em] font-medium whitespace-nowrap">
+            {invitation.date.month}
+          </span>
+          <span class="w-full h-px bg-pooh-brown-light"></span>
+        </div>
+
+        <div class="w-[clamp(54px,9vw,68px)] h-[clamp(54px,9vw,68px)] rounded-full flex items-center justify-center shrink-0 mx-2 leading-none">
+          <span class="font-mono text-pooh-brown-light text-[clamp(1.6rem,5vw,2.2rem)] font-normal leading-none z-40 mt-6 font-bold">
+            {invitation.date.day}
+          </span>
+          <img src="barril.webp" alt="" aria-hidden="true" class="w-16 md:w-20 my-6 opacity-90 absolute" />
+        </div>
+
+        <div class="flex flex-col items-center flex-1 gap-1.5">
+          <span class="w-full h-px bg-pooh-brown-light"></span>
+          <span class="font-serif text-pooh-brown text-[clamp(1.2rem,2.8vw,1.55rem)] tracking-[0.1em] font-medium whitespace-nowrap">
+            {invitation.date.time}
+          </span>
+          <span class="w-full h-px bg-pooh-brown-light"></span>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <Navbar />
 </main>

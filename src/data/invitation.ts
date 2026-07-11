@@ -1,3 +1,9 @@
+export interface ItineraryItem {
+  time: string;
+  title: string;
+  description?: string;
+}
+
 export interface InvitationData {
   name: string;
   subtitle: string;
@@ -10,8 +16,19 @@ export interface InvitationData {
   location: {
     label: string;
     address: string;
+    mapsQuery: string;
   };
   heroImage: string;
+  itinerary: ItineraryItem[];
+  dressCode: string;
+  rsvp: {
+    phone: string;
+    deadline: string;
+  };
+  gifts: {
+    message: string;
+  };
+  gallery: string[];
 }
 
 export const invitation: InvitationData = {
@@ -21,11 +38,48 @@ export const invitation: InvitationData = {
   date: {
     month: "Julio",
     day: "26",
-    time: "2:30 pm",
+    time: "2:30 PM",
   },
   location: {
-    label: "Lugar",
+    label: "LUGAR",
     address: "Juan Ramos Beltrán 41, 46470 Magdalena, Jal., México",
+    mapsQuery: "Juan Ramos Beltrán 41, 46470 Magdalena, Jalisco, México",
   },
   heroImage: "/wp.png",
+  itinerary: [
+    {
+      time: "2:30 PM",
+      title: "Recepción",
+      description: "Bienvenida a los invitados",
+    },
+    {
+      time: "3:00 PM",
+      title: "Santa Misa",
+      description: "Misa de bautismo",
+    },
+    {
+      time: "4:00 PM",
+      title: "Celebración",
+      description: "Recepción y comida",
+    },
+    {
+      time: "5:00 PM",
+      title: "Pastel",
+      description: "Corte de pastel y brindis",
+    },
+    {
+      time: "8:00 PM",
+      title: "Cierre",
+      description: "Despedida y agradecimiento",
+    },
+  ],
+  dressCode: "Formal — Colores pasteles",
+  rsvp: {
+    phone: "521331234567",
+    deadline: "15 de Julio",
+  },
+  gifts: {
+    message: "Tu presencia es nuestro mejor regalo. Si deseas obsequiar algo, agradeceremos tu contribución para el futuro de Emiliano.",
+  },
+  gallery: ["/emi/1.jpeg", "/emi/2.jpeg", "/emi/3.jpeg", "/emi/4.jpeg", "/emi/5.jpg", "/emi/6.jpg"],
 };
