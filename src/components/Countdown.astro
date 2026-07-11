@@ -1,0 +1,88 @@
+---
+import { invitation } from "../data/invitation";
+---
+
+<div
+    class="flex justify-center items-baseline gap-2 sm:gap-3 my-2"
+    aria-live="polite"
+    aria-label="Cuenta regresiva para el evento"
+>
+    <div class="flex flex-col items-center">
+        <span
+            id="cd-days"
+            class="font-serif text-pooh-brown-dark text-[clamp(1.5rem,4.2vw,2.1rem)] font-semibold leading-none [font-variant-numeric:tabular-nums]"
+        >00</span>
+        <span
+            class="font-serif text-pooh-brown text-[9px] tracking-[0.15em] uppercase mt-1"
+        >Días</span>
+    </div>
+    <span
+        class="font-serif text-pooh-brown-light text-[clamp(1.5rem,4.2vw,2.1rem)] leading-none"
+        aria-hidden="true">:</span
+    >
+    <div class="flex flex-col items-center">
+        <span
+            id="cd-hours"
+            class="font-serif text-pooh-brown-dark text-[clamp(1.5rem,4.2vw,2.1rem)] font-semibold leading-none [font-variant-numeric:tabular-nums]"
+        >00</span>
+        <span
+            class="font-serif text-pooh-brown text-[9px] tracking-[0.15em] uppercase mt-1"
+        >Hrs</span>
+    </div>
+    <span
+        class="font-serif text-pooh-brown-light text-[clamp(1.5rem,4.2vw,2.1rem)] leading-none"
+        aria-hidden="true">:</span
+    >
+    <div class="flex flex-col items-center">
+        <span
+            id="cd-mins"
+            class="font-serif text-pooh-brown-dark text-[clamp(1.5rem,4.2vw,2.1rem)] font-semibold leading-none [font-variant-numeric:tabular-nums]"
+        >00</span>
+        <span
+            class="font-serif text-pooh-brown text-[9px] tracking-[0.15em] uppercase mt-1"
+        >Min</span>
+    </div>
+    <span
+        class="font-serif text-pooh-brown-light text-[clamp(1.5rem,4.2vw,2.1rem)] leading-none"
+        aria-hidden="true">:</span
+    >
+    <div class="flex flex-col items-center">
+        <span
+            id="cd-secs"
+            class="font-serif text-pooh-brown-dark text-[clamp(1.5rem,4.2vw,2.1rem)] font-semibold leading-none [font-variant-numeric:tabular-nums]"
+        >00</span>
+        <span
+            class="font-serif text-pooh-brown text-[9px] tracking-[0.15em] uppercase mt-1"
+        >Seg</span>
+    </div>
+</div>
+
+<script define:vars={{ targetDate: invitation.date.targetDate }}>
+    const target = new Date(targetDate).getTime();
+    const $days = document.getElementById("cd-days");
+    const $hours = document.getElementById("cd-hours");
+    const $mins = document.getElementById("cd-mins");
+    const $secs = document.getElementById("cd-secs");
+
+    function pad(n) {
+        return String(n).padStart(2, "0");
+    }
+
+    function update() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+            $days.textContent = "00";
+            $hours.textContent = "00";
+            $mins.textContent = "00";
+            $secs.textContent = "00";
+            return;
+        }
+        $days.textContent = pad(Math.floor(diff / 86400000));
+        $hours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+        $mins.textContent = pad(Math.floor((diff % 3600000) / 60000));
+        $secs.textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+
+    update();
+    setInterval(update, 1000);
+</script>
