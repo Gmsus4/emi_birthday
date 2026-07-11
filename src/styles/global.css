@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import '@fontsource-variable/yanone-kaffeesatz/wght.css';
+@import "@fontsource-variable/yanone-kaffeesatz/wght.css";
 
 :root {
   --color-primary: #ff6b9d;
@@ -21,7 +21,7 @@
   --color-background-soft: var(--color-background-soft);
   --color-text: var(--color-text);
   --color-text-soft: var(--color-text-soft);
-  --font-display: 'Yanone Kaffeesatz Variable', system-ui, sans-serif;
+  --font-display: "Yanone Kaffeesatz Variable", system-ui, sans-serif;
 }
 
 html {
@@ -31,7 +31,11 @@ html {
 body {
   font-family: var(--font-display);
   background:
-    radial-gradient(circle at 20% 0%, var(--color-background-soft) 0%, transparent 45%),
+    radial-gradient(
+      circle at 20% 0%,
+      var(--color-background-soft) 0%,
+      transparent 45%
+    ),
     radial-gradient(circle at 80% 100%, #ffd9e8 0%, transparent 45%),
     var(--color-background);
   color: var(--color-text);
@@ -41,20 +45,41 @@ body {
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(2deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
 }
 
 @keyframes float-slower {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(-2deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
 }
 
 @keyframes pulse-soft {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
 }
 
-.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
-.animate-float-slower { animation: float-slower 7s ease-in-out infinite; }
-.animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+.animate-float-slower {
+  animation: float-slower 7s ease-in-out infinite;
+}
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}

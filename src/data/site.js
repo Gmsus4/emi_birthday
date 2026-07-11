@@ -1,3 +1,17 @@
+const calendarUrl =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  `&text=${encodeURIComponent("Cumpleaños y bautizo de Emi 😺🐫")}` +
+  "&dates=20260726T143000/20260726T170000" +
+  `&details=${encodeURIComponent(
+    "Celebra con nosotros el primer añito y bautizo de Emiliano. " +
+      "Confirma tu asistencia por WhatsApp al +52 33 2233 1626. ",
+  )}` +
+  `&location=${encodeURIComponent(
+    "Juan Ramos Beltrán 41, 46470 Magdalena, Jal., México",
+  )}` +
+  "&ctz=America/Mexico_City" +
+  "&sf=true&output=xml";
+
 export const hero = {
   eyebrow: {
     text: "Te invitamos a celebrar",
@@ -23,7 +37,7 @@ export const hero = {
     {
       id: "ver-evento",
       text: "Ver evento",
-      href: "https://calendar.app.google/vD1dW3ebxsUHCoQg6",
+      href: calendarUrl,
       type: "secondary",
       icon: "calendar",
     },
