@@ -1,21 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --font-script: "Pinyon Script", cursive;
-  --font-serif: "Cormorant Garamond", serif;
-  --color-cream: #f3e9d8;
-  --color-cream-dark: #e8dcc4;
-  --color-pooh-brown: #6b4423;
-  --color-pooh-brown-light: #8a5a35;
-  --color-honey: #c89545;
+    --font-script: "Pinyon Script", cursive;
+    --font-serif: "Cormorant Garamond", serif;
+
+    --color-cream: #f5ead4;
+    --color-cream-mid: #ecdfc4;
+    --color-cream-dark: #e8d8b8;
+
+    --color-pooh-brown: #6b4423;
+    --color-pooh-brown-dark: #5a3a20;
+    --color-pooh-brown-light: #8a5a35;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: var(--font-serif);
-  color: var(--color-pooh-brown);
-  background-color: var(--color-cream);
+@custom-variant short-screen (max-height: 700px);
+@custom-variant narrow-screen (max-width: 380px);
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-serif);
+    color: var(--color-pooh-brown);
+    background-color: var(--color-cream);
 }
