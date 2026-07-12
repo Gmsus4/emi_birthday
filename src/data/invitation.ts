@@ -64,7 +64,7 @@ export const invitation: InvitationData = {
     {
       time: "4:00 PM",
       title: "Celebración",
-      description: "Recepción y comida",
+      description: "Piñatas y pastel",
     },
     // {
     //   time: "5:00 PM",
