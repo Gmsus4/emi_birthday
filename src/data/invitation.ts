@@ -52,38 +52,40 @@ export const invitation: InvitationData = {
   openGraph: "/op.jpg",
   itinerary: [
     {
+      time: "12:00 PM",
+      title: "Santa Misa",
+      description: "Misa de bautismo",
+    },
+    {
       time: "2:30 PM",
       title: "Recepción",
       description: "Bienvenida a los invitados",
-    },
-    {
-      time: "3:00 PM",
-      title: "Santa Misa",
-      description: "Misa de bautismo",
     },
     {
       time: "4:00 PM",
       title: "Celebración",
       description: "Recepción y comida",
     },
-    {
-      time: "5:00 PM",
-      title: "Pastel",
-      description: "Corte de pastel y brindis",
-    },
-    {
-      time: "8:00 PM",
-      title: "Cierre",
-      description: "Despedida y agradecimiento",
-    },
+    // {
+    //   time: "5:00 PM",
+    //   title: "Pastel",
+    //   description: "Corte de pastel y brindis",
+    // },
+    // {
+    //   time: "8:00 PM",
+    //   title: "Cierre",
+    //   description: "Despedida y agradecimiento",
+    // },
   ],
   dressCode: "Formal — Colores pasteles",
   rsvp: {
-    phone: "521331234567",
+    phone: "523322331626",
     deadline: "15 de Julio",
   },
   gifts: {
-    message: "Tu presencia es nuestro mejor regalo. Si deseas obsequiar algo, agradeceremos tu contribución para el futuro de Emiliano.",
+    message: "Tu presencia es nuestro mejor regalo.",
+    // message: "Tu presencia es nuestro mejor regalo. Si deseas obsequiar algo, agradeceremos tu contribución para el futuro de Emiliano.",
   },
-  gallery: ["/emi/1.jpeg", "/emi/2.jpeg", "/emi/3.jpeg", "/emi/4.jpeg", "/emi/5.jpg", "/emi/6.jpg", "/emi/7.jpg", "/emi/8.jpg", "/emi/9.jpg", "/emi/10.jpg", "/emi/11.jpg", "/emi/12.jpg"],
+  gallery: ["/emi/5.jpg", "/emi/2.jpeg", "/emi/3.jpeg", "/emi/7.jpg", "/emi/8.jpg", "/emi/9.jpg"],
+  // gallery: ["/emi/1.jpeg", "/emi/2.jpeg", "/emi/3.jpeg", "/emi/4.jpeg", "/emi/5.jpg", "/emi/6.jpg", "/emi/7.jpg", "/emi/8.jpg", "/emi/9.jpg", "/emi/10.jpg", "/emi/11.jpg", "/emi/12.jpg"],
 };
