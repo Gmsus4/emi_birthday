@@ -1,7 +1,17 @@
+import Church from "../icons/Church.astro";
+import Party from "../icons/Party.astro";
+
 export interface ItineraryItem {
   time: string;
   title: string;
   description?: string;
+}
+
+export interface LocationItem {
+  label: string;
+  icon: (_props: Record<string, any>) => any;
+  address: string;
+  mapsQuery: string;
 }
 
 export interface InvitationData {
@@ -14,11 +24,7 @@ export interface InvitationData {
     time: string;
     targetDate: string;
   };
-  location: {
-    label: string;
-    address: string;
-    mapsQuery: string;
-  };
+  locations: LocationItem[];
   heroImage: string;
   openGraph: string;
   itinerary: ItineraryItem[];
@@ -43,11 +49,20 @@ export const invitation: InvitationData = {
     time: "2:30 PM",
     targetDate: "2026-07-26T14:30:00-06:00",
   },
-  location: {
-    label: "LUGAR",
-    address: "Juan Ramos Beltrán 41, 46470 Magdalena, Jal., México",
-    mapsQuery: "Juan Ramos Beltrán 41, 46470 Magdalena, Jalisco, México",
-  },
+  locations: [
+    {
+      label: "Iglesia",
+      icon: Church,
+      address: "Parroquia del Señor Milagroso, Magdalena, Jal., México - Iglesia",
+      mapsQuery: "Parroquia del Señor Milagroso, Magdalena, Jalisco, México",
+    },
+    {
+      label: "Recepción",
+      icon: Party,
+      address: "Juan Ramos Beltrán 41, 46470 Magdalena, Jal., México",
+      mapsQuery: "Juan Ramos Beltrán 41, 46470 Magdalena, Jalisco, México",
+    },
+  ],
   heroImage: "/wp.png",
   openGraph: "/op.jpg",
   itinerary: [
