@@ -54,7 +54,7 @@ export const invitation: InvitationData = {
     {
       time: "12:00 PM",
       title: "Santa Misa",
-      description: "Misa de bautismo",
+      description: "Parroquia del Señor Milagroso, Magdalena.",
     },
     {
       time: "2:30 PM",
